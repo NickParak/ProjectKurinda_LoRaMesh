@@ -28,7 +28,6 @@ using namespace loramesher;
 //     SPI pins: SCK=9, MISO=11, MOSI=10
 //     Requires: radioConfig.setTcxoVoltage(1.8F)
 
-<<<<<<< HEAD
 // DX-LR30 module connected to ESP32-C3 SuperMini
 #define LORA_SCK   4   // SPI clock
 #define LORA_MISO  5   // SPI controller input
@@ -39,15 +38,6 @@ using namespace loramesher;
 #define LORA_RST   10  // Radio reset
 #define LORA_RXEN  20  // RF receive enable (not configured by PinConfig)
 #define LORA_TXEN  21  // RF transmit enable (not configured by PinConfig)
-=======
-// for the DX-LR30 module connected to ESP32-C3 Super Mini, use following pin configuration:
-#define LORA_CS   7    // DX-LR30 NSS
-#define LORA_RST  10   // DX-LR30 NRESET
-#define LORA_IRQ  3    // DX-LR30 DIO1
-#define LORA_IO1  2    // DX-LR30 BUSY
-#define LORA_RXEN  20
-#define LORA_TXEN  21
->>>>>>> e9d1130df946cfe9d27c2e8a5aba31971e6ca219
 
 // =============================================================================
 // Radio Configuration
@@ -177,12 +167,8 @@ bool sendTestMessage() {
 
 void ConfigureAndUseLoraMesher() {
     // Step 1: Configure hardware pins
-<<<<<<< HEAD
     PinConfig pinConfig(LORA_NSS, LORA_RST, LORA_DIO1, LORA_BUSY,
                         LORA_SCK, LORA_MISO, LORA_MOSI);
-=======
-    PinConfig pinConfig(LORA_CS, LORA_RST, LORA_IRQ, LORA_IO1);
->>>>>>> e9d1130df946cfe9d27c2e8a5aba31971e6ca219
 
     // Step 2: Configure radio parameters
     RadioConfig radioConfig(LORA_RADIO_TYPE, LORA_FREQUENCY,
@@ -197,11 +183,7 @@ void ConfigureAndUseLoraMesher() {
 
     // Step 3: Create protocol configuration (uses defaults)
     LoRaMeshProtocolConfig mesh_config;
-<<<<<<< HEAD
     mesh_config.setNodeRole(NodeRole::AUTO);
-=======
-    mesh_config.setNodeRole(NodeRole::NODE_ONLY);
->>>>>>> e9d1130df946cfe9d27c2e8a5aba31971e6ca219
 
     // Step 4: Build and configure LoraMesher instance
     mesher = LoraMesher::Builder()
