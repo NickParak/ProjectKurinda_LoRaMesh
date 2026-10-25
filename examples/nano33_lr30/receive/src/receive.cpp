@@ -25,10 +25,10 @@
 #include <Arduino.h>
 #include <RadioLib.h>
 
-constexpr uint8_t PIN_NSS  = 10;
-constexpr uint8_t PIN_DIO1 = 2;
-constexpr uint8_t PIN_RST  = 9;
-constexpr uint8_t PIN_BUSY = 8;
+constexpr uint8_t PIN_NSS  = 7;
+constexpr uint8_t PIN_DIO1 = 3;
+constexpr uint8_t PIN_RST  = 10;
+constexpr uint8_t PIN_BUSY = 2;
 
 SX1262 radio = new Module(
     PIN_NSS,
@@ -61,7 +61,7 @@ void setFlag(void) {
 }
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   // initialize SX1262 at 434 MHz
   Serial.print(F("[SX1262] Initializing ... "));
@@ -102,6 +102,8 @@ void setup() {
 }
 
 void loop() {
+  Serial.println("Waiting for packet ...");
+  
   // check if the flag is set
   if(receivedFlag) {
     // reset flag
